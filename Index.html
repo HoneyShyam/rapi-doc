@@ -1,0 +1,2293 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Recording - API Reference</title>
+    <link href="stylesheets/styles.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.js"></script>
+    <script src="javascripts/all.js"></script>
+    <script src="dist/clipboard.min.js"></script>
+
+    <!-- <script>
+        // $(document).ready(function() {
+        //$(".toc-wrapper .toc-list-h2").siblings().css("display", "none");
+        //$("#toc a").click(function() {
+        //$("#toc a.active").removeClass("active");
+        //$(this).addClass("active");
+        //$(".toc-h1.toc-list-h2").siblings().hide('slow');
+        // $(this).parent().find("ul").toggle('slow');
+        //});
+        // });
+        //
+    </script> -->
+</head>
+
+<body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;]">
+    <a href="#" id="nav-button">
+        <span>
+            NAV
+            <img src="images/navbar.png" alt="Navbar">
+        </span>
+    </a>
+    <div class="toc-wrapper">
+        <img src="images/logo.png" class="logo" alt="Logo">
+        <div class="lang-selector">
+            <a href="#" data-language-name="shell" class="active">shell</a>
+            <a href="#" data-language-name="csharp">csharp</a>
+            <!-- <a href="#" data-language-name="python">python</a>
+            <a href="#" data-language-name="javascript">javascript</a> -->
+        </div>
+        <div class="search">
+            <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+        <ul id="toc" class="toc-list-h1">
+            <li>
+                <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            </li>
+            <li>
+                <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            </li>
+            <li>
+                <a href="#register" class="toc-h1 toc-link" data-title="Register">Register</a>
+                <ul class="toc-list-h2" style="display:none">
+                    <li><a class="toc-h2 toc-link" href="#reg-phone">Register Phone</a></li>
+                    <li><a class="toc-h2 toc-link" href="#verify-phone">Verify Phone</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#files" class="toc-h1 toc-link" data-title="files">Files</a>
+                <ul class="toc-list-h2">
+                    <li><a href="#get-all-files" class="toc-h2 toc-link" data-title="Get All files">Get All files</a></li>
+                    <li><a class="toc-h2 toc-link" data-title="Create File" href="#create-file">Create File</a></li>
+                    <li><a class="toc-h2 toc-link" data-title="Create Meta File" href="#create-meta-file">Create Meta File</a></li>
+                    <li><a class="toc-h2 toc-link" href="#update-meta-file">Update Meta File</a></li>
+                    <li><a class="toc-h2 toc-link" href="#get-meta-file">Get Meta Files</a></li>
+                    <li><a class="toc-h2 toc-link" href="#delete-meta-file">Delete Meta Files</a></li>
+                    <li><a class="toc-h2 toc-link" href="#update-file">Update File</a></li>
+                    <li><a class="toc-h2 toc-link" href="#delete-file">Delete File</a></li>
+                    <li><a class="toc-h2 toc-link" href="#clone-file">Clone File</a></li>
+                    <li><a class="toc-h2 toc-link" href="#update-star">Update Star</a></li>
+                    <li> <a class="toc-h2 toc-link" href="#recover-file">Recover File</a></li>
+                    <li> <a class="toc-h2 toc-link" href="#update-file-order">Update File Order</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#folders" class="toc-h1 toc-link" data-title="folders">Folders</a>
+                <ul class="toc-list-h2">
+                    <li><a class="toc-h2 toc-link" href="#get-folders">Get Folders</a></li>
+                    <li><a class="toc-h2 toc-link" href="#create-folder">Create Folder</a>
+                        <li><a class="toc-h2 toc-link" href="#verify-folder-pass">Verify Folder Password</a></li>
+                        <li><a class="toc-h2 toc-link" href="#delete-folder">Delete Folder</a></li>
+                        <li><a class="toc-h2 toc-link" href="#update-folder-order">Update Folders Order</a></li>
+                </ul>
+                </li>
+                <li>
+                    <a href="#profile" class="toc-h1 toc-link" data-title="profile">Profile</a>
+                    <ul class="toc-list-h2">
+                        <li><a class="toc-h2 toc-link" href="#get-profile">Get Profile</a></li>
+                        <li><a class="toc-h2 toc-link" href="#update-profile">Update Profile</a></li>
+                        <li><a class="toc-h2 toc-link" href="#update-profile-pic">Update Profile Picture</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#settings" class="toc-h1 toc-link" data-title="Settings">Settings</a>
+                    <ul class="toc-list-h2">
+                        <li><a class="toc-h2 toc-link" href="#get-settings">Get Settings</a></li>
+                        <li><a class="toc-h2 toc-link" href="#update-settings">Update Settings</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#get-translations" class="toc-h1 toc-link" data-title="Get Translations">Get Translations</a>
+                </li>
+                <li>
+                    <a href="#get-languages" class="toc-h1 toc-link" data-title="Get Languages">Get Languages</a>
+                </li>
+                <li>
+                    <a href="#get-phones" class="toc-h1 toc-link" data-title="Get Phones">Get Phones</a>
+                </li>
+                <li>
+                    <a href="#get-messages" class="toc-h1 toc-link" data-title="Get Messages">Get Messages</a>
+                </li>
+                <li>
+                    <a href="#update-device-token" class="toc-h1 toc-link" data-title="Update Device Token">Update Device Token</a>
+                </li>
+                <li>
+                    <a href="#buy-credits" class="toc-h1 toc-link" data-title="Buy Credits">Buy Credits</a>
+                </li>
+                <li>
+                    <a href="#notify-user" class="toc-h1 toc-link" data-title="Notify User">Notify User</a>
+                </li>
+                <li>
+                    <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+                </li>
+        </ul>
+        <!-- <ul class="toc-footer"> -->
+        <!-- <li><a href="#">Sign Up for a Developer Key</a></li> -->
+        <!-- <li><a href="https://github.com/lord/slate">Documentation Powered by Slate</a></li> -->
+        <!-- </ul> -->
+    </div>
+    <div class="page-wrapper">
+        <div class="dark-box"></div>
+        <div class="content">
+            <h1 id="introduction">Introduction</h1>
+            <p>Welcome to the Recording API! You can use our API to access Recording API endpoints, which can get information on various Recording files, and folders in our database for your account.</p>
+            <p>We have language bindings in Shell, C#, JAVA, PHP, GO and many more! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+            <!--<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API's documentation.</p>-->
+            <h1 id="authentication">Authentication</h1>
+            <!--<blockquote>
+                <p>To authorize, use this code:</p>
+            </blockquote>-->
+            <!--<pre class="highlight csharp tab-csharp" style="display: none;"><code><span class="nb">require</span> <span class="s1">'file'</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="no">file</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'553a431e192d2553a431e1930f'</span><span class="p">)</span>
+    </code></pre>-->
+            <!--<pre class="highlight python tab-python" style="display: none;"><code><span class="kn">import</span> <span class="nn">file</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'553a431e192d2553a431e1930f'</span><span class="p">)</span>
+    </code></pre>-->
+            <!--<pre class="highlight shell tab-shell" ><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"https://app2.virtualbrix.net/rapi/"</span>
+  -H <span class="s2">"api_key: 553a431e192d2553a431e1930f"</span>
+</code></pre>-->
+            <!--<pre class="highlight javascript tab-javascript" style="display: none;"><code><span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'file'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'553a431e192d2553a431e1930f'</span><span class="p">);</span>
+    </code></pre>-->
+            <blockquote>
+                <p>Make sure to replace <code>553a431e192d2553a431e1930f</code> with your API key.</p>
+            </blockquote>
+            <p>Recording uses API keys to allow access to the API. You can register a new Recording API key at the time of verification.</p>
+            <p>Recording expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+            <p><code>api_key: 553a431e192d2553a431e1930f</code></p>
+            <aside class="notice">
+                You must replace <code>553a431e192d2553a431e1930f</code> with your personal API key.
+            </aside>
+
+            <!--Register Phone-->
+            <h1 id="register">Register</h1>
+            <p>You need to register on the app using your phone number with country code to get verified the phone and get API key</p>
+            <h2 id="reg-phone">Register Phone</h2>
+            <blockquote>
+                <p>
+                    The Register Request Code Example:
+                </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight" data-clipboard-target="#tab-shell-register-req"><img class="clippy"  src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-register-req">curl -X POST https://app2.virtualbrix.net/rapi/register_phone/ -d \
+&quot;phone=+16463742122&amp;
+token=55942ee3894f51000530894&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-register-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-register-req"><span  class="cpk">using</span> Recording;
+<span  class="cpk">Api</span>.Token="55942ee3894f51000530894";  
+var resp = <span  class="cpk">Api</span>.RegisterPhone("+1", "3133073896");</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-before-copy="Copy" data-after-copy="Copied" data-clipboard-target="#register-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="register-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;phone&quot;:&quot;+16463742122&quot;,
+    &quot;code&quot;:&quot;54004&quot;,
+    &quot;msg&quot;:&quot;Verification Code Sent&quot;
+}</code></pre>
+            <p>This endpoint register your phone number with the app.</p>
+            <h3 id="http-request-33">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/register_phone/</code></p>
+            <h3 id="url-parameters-2">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>phone</td>
+                        <td>Yes</td>
+                        <td>the phone number with country code</td>
+                    </tr>
+                    <tr>
+                        <td>token</td>
+                        <td>Yes</td>
+                        <td>the value of the token</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Register Phone-->
+            <!--Verify Phone-->
+            <h2 id="verify-phone">Verify Phone</h2>
+            <blockquote>
+                <p>
+                    The Verify Phone Request Code Example:
+                </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-verify-phone-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-verify-phone-req">curl -X POST https://app2.virtualbrix.net/rapi/verify_phone/ -d \
+&quot;phone=%2B16463742122
+&amp;code=54004&amp;mcc=300
+&amp;app=free&amp;token=55942ee3894f51000530894
+&amp;device_token=234
+&amp;device_type=android
+&amp;time_zone=10&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-verify-phone-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-verify-phone-req"><span  class="cpk">using</span> Recording;   
+<span  class="cpk">VerifyPhoneRequest</span> verifyPhoneReq = <span class="kd">new</span> <span  class="cpk">VerifyPhoneRequest</span>
+{
+    Token = &quot;55942ee3894f51000530894&quot;;,
+    Phone = &quot;+16463742122&quot;,
+    App = &quot;rec&quot;,
+    Code = &quot;96080&quot;,
+    DeviceId = &quot;yourDeviceId&quot;,
+    DeviceToken =&quot;yourdevicetoken&quot;,
+    DeviceType = DeviceType.windows.ToString(),
+    Mcc = &quot;300&quot;,
+    TimeZone = &quot;330&quot;
+};
+var status =  <span  class="cpk">Api</span>.VerifyPhone(verifyPhoneReq);</span></code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-before-copy="Copy" data-after-copy="Copied" data-clipboard-target="#verify-phone-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="verify-phone-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;phone&quot;:&quot;+16463742122&quot;,
+    &quot;api_key&quot;:&quot;557872b508520557872b50855c&quot;,
+    &quot;msg&quot;:&quot;Phone Verified&quot;,
+    &quot;code&quot;:&quot;phone_verified&quot;,
+}</code></pre>
+            <p>This endpoint verify your phone number with the app.</p>
+            <h3 id="http-request-34">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/verify_phone/</code></p>
+            <h3 id="url-parameters-3">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>phone</td>
+                        <td>Yes</td>
+                        <td>the phone number with country code</td>
+                    </tr>
+                    <tr>
+                        <td>code</td>
+                        <td>Yes</td>
+                        <td>the verification code reciever in the previous call</td>
+                    </tr>
+                    <tr>
+                        <td>token</td>
+                        <td>Yes</td>
+                        <td>The token set from server</td>
+                    </tr>
+                    <tr>
+                        <td>mcc</td>
+                        <td>Yes</td>
+                        <td>the integer value e.g. "300"</td>
+                    </tr>
+                    <tr>
+                        <td>app</td>
+                        <td>Yes</td>
+                        <td>the value of the app values are free/rec/rem</td>
+                    </tr>
+                    <tr>
+                        <td>device_token</td>
+                        <td>Yes</td>
+                        <td>the device token that can be generated from device</td>
+                    </tr>
+                    <tr>
+                        <td>device_type</td>
+                        <td>Yes</td>
+                        <td>the device type e.g. android or iOS </td>
+                    </tr>
+                    <tr>
+                        <td>time_zone</td>
+                        <td>Yes</td>
+                        <td>the time zone difference in minutes</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Verify Phone-->
+            <!--Files Methods-->
+            <h1 id="files">Files</h1>
+            <h2 id="get-all-files">Get All files</h2>
+            <blockquote>
+                <p>The Get Files Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-files-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-files-req">curl -X POST https://app2.virtualbrix.net/rapi/get_files/ -d
+&quot;api_key=557872b508520557872b50855c
+&amp;page=0
+&amp;folder_id=4&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-files-req">
+                <img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-files-req"><span class="cpk">using Recording</span>
+<span><span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var param = new <span class="cpk">GetFileRequest</span>
+{
+    page = &quot;0&quot;,
+    folderId =&quot;4&quot;,
+    op = <span class="cpk">OperationType</span>.greater
+};           
+var response = <span class="cpk">Api</span>.GetFiles(param);</span></code></pre>
+            <!-- <pre class="highlight python tab-python" style="display: none;"><code><span class="kn">import</span> <span class="nn">file</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'553a431e192d2553a431e1930f'</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    </code></pre> -->
+
+
+            <!--<pre class="highlight javascript tab-javascript" style="display: none;"><code><span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'file'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'553a431e192d2553a431e1930f'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">files</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+    </code></pre>-->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#get-files-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-files-resp"><span class="p">{
+    &quot;status&quot;: &quot;ok&quot;,
+    &quot;files&quot;: [
+    {
+        &quot;id&quot;: &quot;12&quot;,
+        &quot;access_number&quot;: &quot;&quot;,
+        &quot;name&quot;: &quot;Untitled4&quot;,
+        &quot;f_name&quot;: &quot;&quot;,
+        &quot;l_name&quot;: &quot;&quot;,
+        &quot;email&quot;: &quot;&quot;,
+        &quot;phone&quot;: &quot;&quot;,
+        &quot;notes&quot;: &quot;notes&quot;,
+        &quot;meta&quot;: &quot;&quot;,
+        &quot;source&quot;: &quot;&quot;,
+        &quot;url&quot;: &quot;https://app2.virtualbrix.net/records/player/file/32/557931e49b4f9_1434005988_71056787.mp3&quot;,
+        &quot;credits&quot;: &quot;0&quot;,
+        &quot;duration&quot;: &quot;1&quot;,
+        &quot;time&quot;: &quot;1434005988&quot;,
+        &quot;share_url&quot;: &quot;https://app2.virtualbrix.net/records/player/file/32/557931e49b4f9_1434005988_71056787.mp3&quot;,
+        &quot;download_url&quot;: &quot;https://app2.virtualbrix.net/records/player/file/32/download/557931e49b4f9_1434005988_71056787.mp3&quot;
+    }
+    ],
+    &quot;credits&quot;: 993
+}</span></code></pre>
+            <p>This endpoint retrieves all files.</p>
+            <h3 id="http-request-35">Curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_files/</code></p>
+            <h3 id="query-parameters">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>folder_id</td>
+                        <td>No</td>
+                        <td>values can be all/app2 or do not set source param</td>
+                    </tr>
+                    <tr>
+                        <td>page</td>
+                        <td>No</td>
+                        <td>values can be 1,2,3 etc.</td>
+                    </tr>
+                    <tr>
+                        <td>source</td>
+                        <td>No</td>
+                        <td>values can be all/app2 or do not set source param</td>
+                    </tr>
+                    <tr>
+                        <td>pass</td>
+                        <td>No</td>
+                        <td>required for private folders</td>
+                    </tr>
+                    <tr>
+                        <td>reminder</td>
+                        <td>No</td>
+                        <td>for getting file reminders</td>
+                    </tr>
+                    <tr>
+                        <td>q</td>
+                        <td>Yes</td>
+                        <td>search transcription text</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--<aside class="success">
+                Remember — a happy file is an authenticated file!
+            </aside>-->
+            <!--Start Create File-->
+            <h2 id="create-file">Create File</h2>
+            <blockquote>
+                <p>The Create File Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-create-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-create-file-req">curl -X POST https://app2.virtualbrix.net/rapi/create_file/ -F
+&quot;file=@/var/www/apps/phone/message.wav&quot; -F
+&quot;api_key=557872b508520557872b50855c&quot; -F
+&apos;data={
+&quot;name&quot;:&quot;testfile&quot;,
+&quot;notes&quot;:&quot;testnotes&quot;,
+&quot;remind_days&quot;:&quot;10&quot;,
+&quot;remind_date&quot;:&quot;10-jan-2020 23:23:52&quot;
+}&apos;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;">
+<button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-create-file-req">
+<img class="clippy" src="images/clippy.svg" alt="Copy">
+</button>   
+<code id="tab-csharp-create-file-req"><span class="cpk">using</span> System.IO;
+<span class="cpk">using</span> Recording.Classes;
+<span class="cpk">using</span> Recording;
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+<span>var strRecFile = &quot;C:\\audioFile.mp3&quot;;
+var recFileName =<span class="cpk">Path</span>.GetFileName(strRecFile);
+HttpFile fileParam = <span class="kd">new</span> HttpFile();
+fileParam.Name = recFileName;
+fileParam.FileName = recFileName;
+<span class="cpk">FileStream</span> fstream = <span class="kd">new</span> <span class="cpk">FileStream</span>(strRecFile, <span class="cpk">FileMode</span>.Open, <span class="cpk">FileAccess</span>.Read);
+<span class="cpk">byte</span>[] fileData = <span class="kd">new</span> <span class="cpk">byte</span>[fstream.Length];
+var dataLength = fileData.Length;
+
+fstream.Read(fileData, 0, fileData.Length);
+fstream.Close();
+fileParam.ContentType = &quot;application/octet-stream&quot;;
+<span class="cpk">CreateFileRequest</span> createRecFile = <span class="kc">new</span> <span class="cpk">CreateFileRequest</span>
+{
+    Notes = &quot;Test Notes&quot;,
+    Tags = &quot;Files Tags&quot;,
+    Name = recFileName,
+    RemindDays = 5,
+    RemindDate = <span class="cpk">DateTime</span>.Now.AddDays(5)
+};
+</span>
+<span class="cpk">Api</span>.CreateFile(fileData, createRecFile, fileParam);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#create-file-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="create-file-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;File Uploaded Successfully&quot;,
+    &quot;id&quot;:&quot;1&quot;
+}</code></pre>
+            <p>This endpoint used to create new file for the request.</p>
+            <h3 id="http-request-36">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/create_file/</code></p>
+            <h3 id="url-parameters-3">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>file</td>
+                        <td>Yes</td>
+                        <td>the filedata for the file</td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td>Yes</td>
+                        <td>file data contains:<br />data={"name":"testfile","notes":"testnotes",”remind_days”:”10”,”remind_date”:”10-jan-2020 23:23:52”}' </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Create File-->
+            <!--Start Create Meta File-->
+            <h2 id="create-meta-file">Create Meta File</h2>
+            <blockquote>
+                <p>The Create Meta File Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-create-meta-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-create-meta-file-req">curl -X POST https://app2.virtualbrix.net/rapi/upload_meta_file/ -F
+&quot;file=@var/test.png&quot; -F
+&quot;api_key=59affde26a75f59affde26a7a3&quot; -F
+&quot;name=testfil&quot; -F
+&quot;parent_id=577&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-create-meta-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-create-meta-file-req"><span class="cpk">using</span> System.IO;
+<span class="cpk">using</span> Recording.Classes;
+<span class="cpk">using</span> Recording;
+var parentId = 577;
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+<span>var strFile = &quot;C:\\audioFile.mp3&quot;;
+var fileName =<span class="cpk">Path</span>.GetFileName(strFile).ToLower();
+HttpFile httpParam = <span class="kc">new</span> HttpFile();
+httpParam.Name = fileName;
+httpParam.FileName = fileName.ToLower();
+<span class="cpk">FileStream</span> fstream = <span class="kc">new</span> <span class="cpk">FileStream</span>(strFile, <span class="cpk">FileMode</span>.Open, <span class="cpk">FileAccess</span>.Read);
+<span class="cpk">byte</span>[] fileData = <span class="kc">new</span> <span class="cpk">byte</span>[fstream.Length];
+var dataLength = fileData.Length;</span>
+<span class="cpk">Api</span>.UploadMetaFile(fileData, fileParam, parentId);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#create-meta-file-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="create-meta-file-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Uploaded&quot;,
+    &quot;id&quot;:&quot;123&quot;,
+    &quot;parent_id&quot;:&quot;577&quot;
+}</code></pre>
+            <p>This endpoint used to create new file for the request.</p>
+            <h3 id="http-request-7">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/upload_meta_file/</code></p>
+            <h3 id="url-parameters-3">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>file</td>
+                        <td>Yes</td>
+                        <td>the filedata for the file</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>Yes</td>
+                        <td>the file name</td>
+                    </tr>
+                    <tr>
+                        <td>parent_id</td>
+                        <td>Yes</td>
+                        <td>the parent_id</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Create Meta File-->
+            <!--Start Update Meta File-->
+            <h2 id="update-meta-file">Update Meta File</h2>
+            <blockquote>
+                <p>The Update Meta File Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-meta-file-req">
+                <img class="clippy" src="images/clippy.svg" alt="Copy">
+            </button>
+<code id="tab-shell-update-meta-file-req">curl -X POST https://app2.virtualbrix.net/rapi/upload_meta_file/ -F
+&quot;file=@var/test.png&quot; -F
+&quot;api_key=59affde26a75f59affde26a7a3&quot; -F
+&quot;name=testfil&quot; -F
+&quot;id=123&quot;
+&quot;parent_id=577&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp">
+<button class="btn highlight csharp tab-csharp" style="display: none;" data-clipboard-target="#tab-csharp-update-meta-file-req">
+    <img class="clippy" src="images/clippy.svg" alt="Copy">
+</button>
+<code id="tab-csharp-update-meta-file-req"><span class="cpk">using</span> System.IO;
+<span class="cpk">using</span> Recording.Classes;
+<span class="cpk">using</span> Recording;
+var parentId = 577;
+var fileId = &quot;123&quot;;
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+<span>var strFile = &quot;C:\\audio-meta-file.mp3&quot;;
+var fileName =<span class="cpk">Path</span>.GetFileName(strFile).ToLower();
+HttpFile httpParam = <span class="kc">new</span> HttpFile();
+httpParam.Name = fileName;
+httpParam.FileName = fileName.ToLower();
+<span class="cpk">FileStream</span> fstream = <span class="kc">new</span> <span class="cpk">FileStream</span>(strFile, <span class="cpk">FileMode</span>.Open, <span class="cpk">FileAccess</span>.Read);
+<span class="cpk">byte</span>[] fileData = <span class="kc">new</span> <span class="cpk">byte</span>[fstream.Length];
+var dataLength = fileData.Length;</span>
+var response = <span class="cpk">Api</span>.UploadMetaFile(fileData, httpParam , parentId, fileId);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#update-meta-file-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-meta-file-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Uploaded&quot;,
+    &quot;id&quot;:&quot;123&quot;,
+    &quot;parent_id&quot;:&quot;577&quot;
+}</code></pre>
+            <p>This endpoint used to create new file for the request.</p>
+            <h3 id="http-request-8">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/upload_meta_file/</code></p>
+            <h3 id="url-parameters-3">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>parent_id</td>
+                        <td>Yes</td>
+                        <td>the parent_id</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update Meta File-->
+            <!--Start Get Meta File-->
+            <h2 id="get-meta-file">Get Meta Files</h2>
+            <blockquote>
+                <p>The Get Meta Files Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-meta-files-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-meta-files-req">curl -X POST https://app2.virtualbrix.net/rapi/get_meta_files/ -d \ 
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;parent_id=1&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-meta-files-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-meta-files-req"><span class="cpk">using</span> System;
+<span class="cpk">using</span> Recording;
+string parentId = &quot;123&quot;;
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var getMetaFilesResp = <span class="cpk">Api</span>.GetMetaFiles(parentId);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight" data-clipboard-target="#get-meta-files-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-meta-files-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;meta_files&quot;:[
+    {
+        &quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;0&quot;,
+        &quot;file&quot;:&quot;https:\/\/app2.virtualbrix.net\/records\/player\/file\/2\/meta_file\/5638b19c5a57f_1446556060_27579644904.png&quot;,
+        &quot;parent_id&quot;:&quot;19&quot;,
+        &quot;user_id&quot;:&quot;2&quot;,
+        &quot;time&quot;:&quot;2015-11-03 08:07:40&quot;
+    },   
+    {
+        &quot;id&quot;:&quot;5&quot;,
+        &quot;name&quot;:&quot;test.png&quot;,
+        &quot;file&quot;:&quot;https:\/\/app2.virtualbrix.net\/records\/player\/file\/2\/meta_file\/5638d9c671521_1446566342_66775782375.png&quot;,
+        &quot;parent_id&quot;:&quot;19&quot;,
+        &quot;user_id&quot;:&quot;2&quot;,
+        &quot;time&quot;:&quot;2015-11-03 10:59:02&quot;
+    }]
+}
+</code></pre>
+            <p>This endpoint used to get meta file for the request.</p>
+            <h3 id="http-request-9">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_meta_files/</code></p>
+            <h3 id="url-parameters-4">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>parent_id</td>
+                        <td>Yes</td>
+                        <td>the parent_id the id of the parent file</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Get Meta File-->
+            <!--Delete Meta File-->
+            <h2 id="delete-meta-file">Delete Meta File(s)</h2>
+            <blockquote>
+                <p>The Delete Meta Files Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-delete-meta-files-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-delete-meta-files-req">curl -X POST https://app2.virtualbrix.net/rapi/delete_meta_files/ -d \
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;ids=1,2,4&quot; // or parent_id=19
+</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-delete-meta-files-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-delete-meta-files-req"><span class="cpk">using Recording;</span>
+var fileId = &quot;123&quot;;
+Api.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var getMetaFilesResp = <span class="cpk">Api</span>.DeleteMetaFiles(ids: "697,698", parent_id: null);</code></pre>
+            <!--<pre class="highlight javascript tab-javascript" style="display: none;"><code><span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'file'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'553a431e192d2553a431e1930f'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    </code></pre>-->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#delete-meta-files-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="delete-meta-files-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Deleted Successfully&quot;
+}
+</code></pre>
+            <p>This endpoint deletes a specific meta file.</p>
+            <h3 id="http-request-10">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/delete_meta_files/</code></p>
+            <h3 id="url-parameters-2">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>ids</td>
+                        <td>Yes</td>
+                        <td>the comma separated id that need to be deleted. comma separated ids limit is 30</td>
+                    </tr>
+                    <tr>
+                        <td>parent_id</td>
+                        <td>No</td>
+                        <td>the parent_id, if provided, deletes all files</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--Update File-->
+            <h2 id="update-file">Update File</h2>
+            <blockquote>
+                <p>The Update File Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-update-file-req">curl -X POST https://app2.virtualbrix.net/rapi/update_file/ -d \
+&quot;api_key=557872b508520557872b50855c
+&amp;id=11
+&amp;f_name=first
+&amp;l_name=lasttest
+&amp;notes=test_notes
+&amp;email=test@gmail.com
+&amp;phone=%2B18104763057
+&amp;tags=tagone
+&amp;folder_id=0
+&amp;name=first reording
+&amp;remind_days=10
+&amp;remind_date=10-jan-2020 23:23:52</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-file-req"><span class="cpk">using</span> Recording;
+<span class="cpk">UpdateFileRequest</span> options = new <span class="cpk">UpdateFileRequest</span>
+{
+    Email = &quot;testing@gmail.com&quot;,
+    Tags = &quot;test Tags, Devotional, song&quot;,
+    Id = newFileId.ToString(),
+    IsPrivate = true,
+    FileName = &quot;Test FileName-Copy&quot;   
+};
+response = <span class="cpk">Api</span>.UpdateFile(options);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#update-file-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-file-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully saved&quot;
+}</code></pre>
+            <p>This endpoint update a specific file.</p>
+            <h3 id="http-request-11">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_file/</code></p>
+            <h3 id="url-parameters-2">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>the file id that need to be updated</td>
+                    </tr>
+                    <tr>
+                        <td>f_name</td>
+                        <td>No</td>
+                        <td>the first name of user</td>
+                    </tr>
+                    <tr>
+                        <td>l_name</td>
+                        <td>No</td>
+                        <td>the last name of user</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>No</td>
+                        <td>the email address of user</td>
+                    </tr>
+                    <tr>
+                        <td>phone</td>
+                        <td>Yes</td>
+                        <td>The registered phone number with app with country code</td>
+                    </tr>
+                    <tr>
+                        <td>tags</td>
+                        <td>No</td>
+                        <td>the tags</td>
+                    </tr>
+                    <tr>
+                        <td>notes</td>
+                        <td>No</td>
+                        <td>the notes</td>
+                    </tr>
+                    <tr>
+                        <td>folder_id</td>
+                        <td>No</td>
+                        <td>folder_id for the file</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>No</td>
+                        <td>file name</td>
+                    </tr>
+                    <tr>
+                        <td>remind_days</td>
+                        <td>No</td>
+                        <td>remind days number</td>
+                    </tr>
+                    <tr>
+                        <td>remind_date</td>
+                        <td>No</td>
+                        <td>remind date</td>
+                    </tr>
+                    <tr>
+                        <td>is_private</td>
+                        <td>No</td>
+                        <td>set yes/no</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update File-->
+
+            <h2 id="delete-file">Delete File(s)</h2>
+            <blockquote>
+                <p>The Delete File Request Code Example:</p>
+            </blockquote>
+            <!--<pre class="highlight python tab-python" style="display: none;"><code><span class="kn">import</span> <span class="nn">file</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'553a431e192d2553a431e1930f'</span><span class="p">)</span>
+    <span class="n">api</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    </code></pre>-->
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-delete-file-req"><img class="clippy" src="images/clippy.svg"></button>
+<code id="tab-shell-delete-file-req">curl -X POST https://app2.virtualbrix.net/rapi/delete_files/ -d \
+&quot;api_key=557872b508520557872b50855c&amp;ids=13,14&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-delete-file-req"><img class="clippy" src="images/clippy.svg"></button>
+<code id="tab-csharp-delete-file-req"><span class="cpk">using</span><span> System</span>
+<span class="cpk">using</span><span> Recording</span>
+response = <span class="cpk">Api</span>.DeleteFiles(ids:&quot;1,2&quot;);</code></pre>
+            <!--<pre class="highlight javascript tab-javascript" style="display: none;"><code><span class="kr">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'file'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'553a431e192d2553a431e1930f'</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">files</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    </code></pre>-->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#delete-file-resp"><img class="clippy" src="images/clippy.svg"></button>
+<code id="delete-file-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Deleted Successfully&quot;
+}
+</code></pre>
+            <p>This endpoint deletes a specific file.</p>
+            <h3 id="http-request-12">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/delete_file/</code></p>
+            <h3 id="url-parameters-2">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>ids</td>
+                        <td>Yes</td>
+                        <td>the comma separated id that need to be deleted. comma separated ids limit is 30</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Delete File-->
+            <!--Clone File-->
+            <h2 id="clone-file">Clone File</h2>
+            <blockquote>
+                <p>The Clone File Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-clone-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-clone-file-req">curl -X POST https://app2.virtualbrix.net/rapi/clone_files/ -d \
+&quot;api_key=557872b508520557872b50855c&amp;id=1&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-clone-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-clone-file-req"><span class="cpk">using</span><span> System</span>
+<span class="cpk">using</span> Recording
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+string cloneFileId = &quot;1&quot;
+var response = <span class="cpk">Api</span>.CloneFile(cloneFileId);
+</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#clone-file-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="clone-file-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Cloned&quot;,
+    &quot;code&quot;:&quot;file_cloned&quot;,
+    &quot;id&quot;:&quot;1&quot;
+}</code></pre>
+            <p>This endpoint clone a specific file.</p>
+            <h3 id="http-request-13">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/clone_file/</code></p>
+            <h3 id="url-parameters-2">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>the id of the file that need to be clone</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Clone File-->
+            <!--Start of Update Star-->
+            <h2 id="update-star">Update Star</h2>
+            <blockquote>
+                <p>The Update Star Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-star-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-update-star-req">curl -X POST https://app2.virtualbrix.net/rapi/update_star/ -d \
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;star=1
+&amp;type=file
+&amp;id=55&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-star-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-star-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.UpdateStar(id: 1020, star: "0", type: "file");</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#update-star-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-star-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Updated&quot;,
+    &quot;code&quot;:&quot;star_updated&quot;
+}</code></pre>
+            <p>This endpoint update star of a specific file or folder.</p>
+            <p>You can update star of a specific file or folder using the endpoint. To update the star of file send type= file, for folder type=folder</p>
+            <h3 id="http-request-14">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_star/</code></p>
+            <h3 id="url-parameters-2">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>star</td>
+                        <td>Yes</td>
+                        <td>1 for Star and 0 for Unstar</td>
+                    </tr>
+                    <tr>
+                        <td>type</td>
+                        <td>Yes</td>
+                        <td>file or folder</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>id of the file or folder</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update Star-->
+            <!--Start of Recover File-->
+            <h2 id="recover-file">Recover File</h2>
+            <blockquote>
+                <p>The Recover File Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-recover-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-recover-file-req">curl -X POST https://app2.virtualbrix.net/rapi/recover_file/ -d \
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;id=4
+&amp;folder_id=34&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-recover-file-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-recover-file-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.RecoverFile(id: 1025);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#recover-file-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="recover-file-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Recovered&quot;
+}
+</code></pre>
+            <p>This endpoint recover a specific file.</p>
+            <h3 id="http-request-15">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/recover_file/</code></p>
+            <h3 id="url-parameters-2">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>The id of the deleted file that need to be recovered</td>
+                    </tr>
+                    <tr>
+                        <td>folder_id</td>
+                        <td>No</td>
+                        <td>If not provided then the file will be recovered into the original folder from where it was deleted</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Recover File-->
+            <!--Start of Update Folder Order-->
+            <h2 id="update-file-order">Update File Order</h2>
+            <blockquote>
+                <p>The Update File Order Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-file-order-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-update-file-order-req">curl -X POST https://app2.virtualbrix.net/rapi/update_order/ -d \
+&quot;api_key=553a431e192d2553a431e1930f&amp;
+files[20]=1&amp;
+files[34]=2&amp;
+files[7]=3&amp;
+files[11]=4&quot;</code></pre>
+            <!-- .NET Code Request -->
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-file-order-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-file-order-req" data-clipboard-title="csharp-update-file-order-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var sortType = SortTypes.file; 
+string id = &quot;12&quot; ;
+string topId = &quot;1&quot;;
+string folderId = &quot;2&quot;
+var response = <span class="cpk">Api</span>.SortFolderOrFiles(sortType, id,topId, folderId);</code></pre>
+            <!-- End .NET Code Request -->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#update-file-order-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-file-order-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Updated&quot;
+}
+</code></pre>
+            <p>This endpoint Update File and Folder Order.</p>
+            <h3 id="http-request-32">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_order/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>id of the file</td>
+                    </tr>
+                    <tr>
+                        <td>move_to</td>
+                        <td>No</td>
+                        <td>The id where want to set the order</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update File Order-->
+            <!-- End of File Functions -->
+            <!--Folders Functions-->
+            <h1 id="folders">Folders</h1>
+            <!--Get Folders -->
+            <h2 id="get-folders">Get All Folders</h2>
+            <blockquote>
+                <p>The Get Folder Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-folders-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-folders-req">curl -X POST https://app2.virtualbrix.net/rapi/get_folders/ -d \
+&quot;api_key=557872b508520557872b50855c&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-folders-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-folders-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.GetFolders();</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#get-folders-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-folders-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;folders&quot;:[
+    {
+        &quot;id&quot;:&quot;29&quot;,
+        &quot;name&quot;:&quot;test&quot;,
+        &quot;created&quot;:&quot;1433989312&quot;
+    },
+    {
+        &quot;id&quot;:&quot;31&quot;,
+        &quot;name&quot;:&quot;test3&quot;,
+        &quot;created&quot;:&quot;1434009445&quot;
+    }],
+    &quot;msg&quot;:&quot;Success&quot;
+}</code></pre>
+            <p>This endpoint get all folders.</p>
+            <h3 id="http-request-16">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_folders/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <!--<tr><td>name</td><td>Yes</td><td>The name of the folder</td></tr>
+            <tr><td>pass</td><td>No</td><td>Set pass parameter to set the folder Password</td></tr>-->
+                </tbody>
+            </table>
+            <!--End of Get Folders-->
+            <!--Start of Create Folder-->
+            <h2 id="create-folder">Create Folder</h2>
+            <blockquote>
+                <p>The Create FolderRequest Code Example:
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-create-folder-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button></p><code id="tab-shell-create-folder-req">curl -X POST https://app2.virtualbrix.net/rapi/create_folder/ -d \
+&quot;api_key=553a431e192d2553a431e1930f&amp;
+name=&quot;TestFolder&quot;&amp;
+pass=&quot;1234&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-create-folder-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button></p><code id="tab-csharp-create-folder-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.CreateFolder(name:&quot;testFolder&quot;, pass: &quot;1234&quot;);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#create-folder-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="create-folder-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;id&quot;:&quot;3&quot;,
+    &quot;msg&quot;:&quot;Created successfully&quot;
+}</code></pre>
+            <p>This endpoint create folder.</p>
+            <h3 id="http-request-17">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/create_folder/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>name</td>
+                        <td>Yes</td>
+                        <td>The name of the folder</td>
+                    </tr>
+                    <tr>
+                        <td>pass</td>
+                        <td>No</td>
+                        <td>Set pass parameter to set the folder Password</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Create Folder-->
+            <!--Start of Verify Folder Password-->
+            <h2 id="verify-folder-pass">Verify Folder Password</h2>
+            <blockquote>
+                <p>The Verify Folder Password Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-verify-folder-pass-req" data-clipboard-title="tab-shell-verify-folder-pass"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-verify-folder-pass-req">curl -X POST https://app2.virtualbrix.net/rapi/verify_folder_pass/ -d \ 
+&quot;api_key=557872b508520557872b50855c
+&amp;pass=1234
+&amp;id=3&quot;</code></pre>
+            <!-- .NET Code Request -->
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-verify-folder-pass-req" data-clipboard-title="tab-shell-verify-folder-pass"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-verify-folder-pass-req" data-clipboard-title="csharp-verify-folder-pass"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.VerifyFolderPassword(name:&quot;testFolder&quot;, pass: &quot;1234&quot;);</code></pre>
+            <!-- End .NET Code Request -->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight" data-clipboard-target="#verify-folder-pass-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="verify-folder-pass-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&apos;Password is Correct&quot;,
+    &quot;code&quot;: &quot;valid_folder_pass&quot;
+}</code></pre>
+            <p>This endpoint verify folder password.</p>
+            <h3 id="http-request-18">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/verify_folder_pass/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>id of the folder</td>
+                    </tr>
+                    <tr>
+                        <td>pass</td>
+                        <td>Yes</td>
+                        <td>pass for the folder</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Verify Folder Password-->
+            <!--Start of Delete Folder-->
+            <h2 id="delete-folder">Delete Folder</h2>
+            <blockquote>
+                <p>The Delete Folder Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-delete-folder-req" data-clipboard-title="tab-shell-verify-folder-pass"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-delete-folder-req">curl -X POST https://app2.virtualbrix.net/rapi/delete_folder/ -d \
+&quot;api_key=557872b508520557872b50855c
+&amp;id=33
+&amp;move_to=10&quot;</code></pre>
+            <!-- .NET Code Request -->
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-delete-folder-req" data-clipboard-title="tab-csharp-delete-folder"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-delete-folder-req" data-clipboard-title="csharp-delete-folder-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.VerifyFolderPassword(id:&quot;33&quot;, move_to: &quot;10&quot;);</code></pre>
+            <!-- End .NET Code Request -->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#delete-folder-resp"> <img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="delete-folder-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Deleted Successfully&quot;
+}</code></pre>
+            <p>This endpoint delete folder.</p>
+            <h3 id="http-request-19">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/delete_folder/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>the id of the folder</td>
+                    </tr>
+                    <tr>
+                        <td>top_id</td>
+                        <td>Yes</td>
+                        <td>the id of the folder where want to set order</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Delete Folder-->
+            <!--Start of Update Folder Order-->
+            <h2 id="update-folder-order">Update Folder Order</h2>
+            <blockquote>
+                <p>The Update Folder Order Request Code Example:
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-order-req"> <img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-update-order-req">curl -X POST https://app2.virtualbrix.net/rapi/update_order/ -d \
+&quot;api_key=553a431e192d2553a431e1930f&amp;
+folders[20]=1&amp;
+folders[34]=2&amp;
+folders[7]=3&amp;
+folders[11]=4&quot;</code></pre>
+            <!-- .NET Code Request -->
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-order-req"> <img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-order-req" data-clipboard-title="csharp-update-order-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var sortType = SortTypes.folder; 
+string id = &quot;12&quot; ;
+string topId = &quot;1&quot;;
+string folderId = &quot;2&quot;
+var response = <span class="cpk">Api</span>.SortFolderOrFiles(sortType, id,topId, folderId);</code></pre>
+            <!-- End .NET Code Request -->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#update-order-resp"> <img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-order-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Updated&quot;
+}
+</code></pre>
+            <p>This endpoint Update Folder Order.</p>
+            <h3 id="http-request-20">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_order/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>Yes</td>
+                        <td>id of the folder</td>
+                    </tr>
+                    <tr>
+                        <td>move_to</td>
+                        <td>No</td>
+                        <td>The id where want to set the order</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update Folder-->
+            <!--End of Folders Functions-->
+
+            <h1 id="profile">Profile</h1>
+            <p>Your Profile what you set.</p>
+            <!--get-profile-->
+            <!--Start of  Get Profile-->
+            <h2 id="get-profile">Get Profile</h2>
+            <blockquote>
+                <p>The Get Profile Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-profile-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-profile-req">curl -X POST https://app2.virtualbrix.net/rapi/get_profile/ -d \
+&quot;api_key=553a431e192d2553a431e1930f&quot;</code></pre>
+            <!-- .NET Code Request -->
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-profile-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-profile-req" data-clipboard-title="csharp-get-profile-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.GetProfile();</code></pre>
+            <!-- End .NET Code Request -->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#get-profile-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-profile-resp">{
+    &quot;status&quot;: &quot;ok&quot;,
+    &quot;profile&quot;:{
+        &quot;f_name&quot;: &quot;Test&quot;,
+        &quot;l_name&quot;: &quot;Last&quot;,
+        &quot;email&quot;: &quot;testing@gmail.com&quot;,
+        &quot;phone&quot;: &quot;+919816098160&quot;,
+        &quot;pic&quot;: &quot;https:\/\/s3.us-east-2.amazonaws.com\/vxphone\/5b9fb9e8048e44477615528986712770153719447201876892206554271966997\/5ca7a51c8e1d17743632422342569695155449065258218222713314102993153.JPG&quot;,
+        &quot;language&quot;: &quot;en-US&quot;,
+        &quot;max_length&quot;: &quot;300&quot;,
+        &quot;play_beep&quot;: 0,
+        &quot;is_public&quot;: 1,
+        &quot;time_zone&quot;: &quot;330&quot;,
+        &quot;plan&quot;: &quot;0&quot;,
+        &quot;time&quot;: 1537194802,
+        &quot;pin&quot;: null
+    },
+    &quot;app&quot;: &quot;free&quot;,
+    &quot;code&quot;: &quot;user_profile&quot;,
+    &quot;share_url&quot;: &quot;itms-apps:\/\/itunes.apple.com\/app\/962899849&quot;,
+    &quot;rate_url&quot;: &quot;itms-apps:\/\/itunes.apple.com\/WebObjects\/MZStore.woa\/wa\/viewContentsUserReviews?id=962899849&amp;onlyLatestVersion=true&amp;pageNumber=0&amp;sortOrdering=1&quot;,
+    &quot;credits&quot;: 0,
+    &quot;credits_trans&quot;: 0
+    }</code></pre>
+            <p>This endpoint Get Profile.</p>
+            <h3 id="http-request-21">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_profile/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Get Profile-->
+            <!--Start of Update Profile-->
+            <h2 id="update-profile">Update Profile</h2>
+            <blockquote>
+                <p>The Update Profile Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-profile-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-update-profile-req">curl -X POST https://app2.virtualbrix.net/rapi/update_profile/ -d \
+&quot;api_key=553a431e192d2553a431e1930f&amp;
+data[f_name]=TestfirstName&amp;
+data[l_name]=TestlastName&amp;
+data[email]=testing@gmail.com&amp;
+data[is_public]=1&amp;
+data[language]=en_us&amp;
+data[mmc]=100&amp;
+data[play_beep]=1&quot;</code></pre>
+            <!-- .NET Code Request -->
+            <pre class="highlight csharp tab-csharp" style="display: none;">
+<button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-profile-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-profile-req" data-clipboard-title="csharp-update-profile-req"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var updProfileReq = new ProfileRequest
+{
+    app = &quot;free&quot;,
+    FirstName = &quot;testing&quot;,
+    Language = &quot;en-us&quot;,
+    IsPublic = 0,
+    LastName = &quot;TestLastName&quot;,
+    MaxLength = &quot;300&quot;,
+    Email = &quot;testing@gmail.com&quot;,
+    Phone = &quot;+919816098160&quot;,
+    Pin = &quot;123456&quot;,
+    PlayBeep = 0,
+    Plan = &quot;0&quot;,
+    TimeZone = &quot;330&quot;
+};
+var response = <span class="cpk">Api</span>.UpdateProfile(updProfileReq);</code></pre>
+            <!-- End .NET Code Request -->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#update-profile-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-profile-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Profile Updated&quot;,
+    &quot;code&quot;:&quot;profile_updated&quot;
+}</code></pre>
+            <p>This endpoint Update Profile.</p>
+            <h3 id="http-request-22">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_profile/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>f_name</td>
+                        <td>No</td>
+                        <td>the firstname of user</td>
+                    </tr>
+                    <tr>
+                        <td>l_name</td>
+                        <td>No</td>
+                        <td>the lastname of user</td>
+                    </tr>
+                    <tr>
+                        <td>email</td>
+                        <td>No</td>
+                        <td>the email address of user</td>
+                    </tr>
+                    <tr>
+                        <td>language</td>
+                        <td>No</td>
+                        <td>the language</td>
+                    </tr>
+                    <tr>
+                        <td>mmc</td>
+                        <td>No</td>
+                        <td>max length of minutes limit between 1 to 120</td>
+                    </tr>
+                    <tr>
+                        <td>play_beep</td>
+                        <td>No</td>
+                        <td>play beep 0 or 1</td>
+                    </tr>
+                    <tr>
+                        <td>is_public</td>
+                        <td>No</td>
+                        <td>set profile private or public 0 or 1</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update Profile-->
+            <!--Start of Update Profile-->
+            <h2 id="update-profile-pic">Update Profile Picture</h2>
+            <blockquote>
+                <p>The Update Profile Picture Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-profile-img-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-update-profile-img-req">curl -X POST https://app2.virtualbrix.net/upload/update_profile_img/ -F
+&quot;file=@/var/www/apps/phone/picture.jpg&quot; -F
+&quot;api_key=557872b508520557872b50855c&quot;</code></pre>
+            <!-- .NET update request -->
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-profile-img-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-profile-img-req" data-clipboard-title="csharp update profile image"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var strFile = &quot;C:\\temp\profile_picture.jpg&quot;;
+var fileName = Path.GetFileName(strFile);                
+HttpFile httpParam = new HttpFile();
+httpParam.Name = fileName;
+httpParam.FileName = fileName;
+FileStream fstream = new FileStream(strFile, FileMode.Open, FileAccess.Read);
+byte[] fileData = new byte[fstream.Length];
+var dataLength = fileData.Length;
+fstream.Read(fileData, 0, fileData.Length);
+fstream.Close();
+httpParam.ContentType = &quot;application/octet-stream&quot;;
+var uploadResponse = <span class="cpk">Api</span>.UpdateProfileImage(fileData, httpParam);</code></pre>
+            <!--End of .NET update request -->
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#update-profile-img-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-profile-img-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Profile Picture Updated&quot;,
+    &quot;file&quot;:&quot;picture.jpg&quot;,
+    &quot;code&quot;:&quot;profile_pic_updated&quot;
+}
+</code></pre>
+            <p>This endpoint Update Profile Picture.</p>
+            <h3 id="http-request-23">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_profile_img/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>file</td>
+                        <td>Yes</td>
+                        <td>the file data that need to be upload</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update Profile-->
+            <h1 id="settings">Settings</h1>
+            <!--Start of Get Settings-->
+            <h2 id="get-settings">Get Settings</h2>
+            <blockquote>
+                <p>The Get Settings Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-settings-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-settings-req">curl -X POST https://app2.virtualbrix.net/rapi/get_settings/ -d \
+&quot;api_key=553a431e192d2553a431e1930f&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-settings-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-settings-req" data-clipboard-title="csharp get settings"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.GetSettings();</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#get-settings-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-settings-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;settings&quot;:
+        {
+            &quot;play_beep&quot;:&quot;no&quot;,
+            &quot;files_permission&quot;:&quot;private&quot;
+        },
+    &quot;app&quot;:&quot;free&quot;,
+    &quot;credits&quot;:0
+}</code></pre>
+            <p>This endpoint to get settings.</p>
+            <h3 id="http-request-24">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_settings/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Default</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>null</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Get Settings-->
+            <!--Start of Update Settings-->
+            <h2 id="update-settings">Update Settings</h2>
+            <blockquote>
+                <p>The Update Settings Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-settings-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-update-settings-req">curl -X POST https://app2.virtualbrix.net/rapi/update_settings/ -d \
+&quot;api_key=557872b508520557872b50855c
+&amp;play_beep=yes
+&amp;files_permission=public&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-settings-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-settings-req" data-clipboard-title="csharp update settings"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.UpdateSettings(playBeep:&quot;yes&quot;, filesPermission:&quot;private&quot;)</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight" data-clipboard-target="#update-settings-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="update-settings-resp">{
+    &quot;status&quot;:&quot;ok&quot;,
+    &quot;msg&quot;:&quot;Successfully Updated&quot;,
+    &quot;code&quot;:&quot;settings_updated&quot;
+}</code></pre>
+            <p>This endpoint to update settings.</p>
+            <h3 id="http-request-25">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_settings/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>play_beep</td>
+                        <td>Yes</td>
+                        <td>the value yes/no</td>
+                    </tr>
+                    <tr>
+                        <td>files_permission</td>
+                        <td>Yes</td>
+                        <td>the value public/private</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update Settings-->
+            <!--Start of Get Translations-->
+            <h2 id="get-translations">Get Translations</h2>
+            <blockquote>
+                <p>The Get Translations Request Code Example:</p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-translations-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-translations-req">curl -X POST https://app2.virtualbrix.net/rapi/get_translations/ -d\
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;language=de&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;">
+<button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-translations-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-translations-req" data-clipboard-title="csharp get translations"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.GetTranslations(language: &quot;de&quot;);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight" data-clipboard-target="#get-translations-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-translations-resp">{
+    &quot;status&quot;: &quot;ok&quot;,
+    &quot;translation&quot;: 
+    {
+        &quot;Access numbers&quot;: &quot;Access numbers_de&quot;,
+        &quot;New Call Recordings&quot;: &quot;New Call Recordings_de&quot;,
+        &quot;All Files&quot;: &quot;All Files_de&quot;,
+        &quot;Trash&quot;: &quot;Trash_de&quot;,
+        &quot;Error&quot;: &quot;Error_de&quot;,
+        &quot;Failed to register for remote notifications&quot;: &quot;Failed to register for remote notifications_de&quot;,
+        &quot;OK&quot;: &quot;OK_de&quot;,
+        &quot;Bluetooth&quot;: &quot;Bluetooth_de&quot;,
+        ... // code shorten
+    }
+}</code></pre>
+            <p>This endpoint to Get Translations.</p>
+            <h3 id="http-request-26">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_translations/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>language</td>
+                        <td>Yes</td>
+                        <td>the language code are en_US/de</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of  Get Translations-->
+            <!--Start of Get Languages-->
+            <h2 id="get-languages">Get Languages</h2>
+            <blockquote>
+                <p>The Get Languages Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-languages-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-languages-req">curl -X POST https://app2.virtualbrix.net/rapi/get_languages/ -d\
+&quot;api_key=553a431e192d2553a431e1930f&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-languages-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-languages-req" data-clipboard-title="csharp Get Language List"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.GetLanguageList();</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#get-languages-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-languages-resp">{
+    &quot;status&quot;: &quot;ok&quot;,
+    &quot;languages&quot;:
+    [{
+        &quot;code&quot;: &quot;en_US&quot;,
+        &quot;name&quot;: &quot;EnglishUS&quot;,
+        &quot;flag&quot;: &quot;https:\/\/app2.virtualbrix.net\/assets\/flags\/icons\/us.png&quot;
+    },
+    {
+        &quot;code&quot;: &quot;de&quot;,
+        &quot;name&quot;: &quot;German&quot;,
+        &quot;flag&quot;: &quot;https:\/\/app2.virtualbrix.net\/assets\/flags\/icons\/de.png&quot;
+    }]
+}</code></pre>
+            <p>This endpoint to Get Languages.</p>
+            <h3 id="http-request-27">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_languages/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of  Get Languages-->
+            <!--Start of Get Phones-->
+            <h2 id="get-phones">Get Phones</h2>
+            <blockquote>
+                <p>The Get Phones Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-phones-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-phones-req">curl -X POST https://app2.virtualbrix.net/rapi/get_phones/ -d\
+&quot;api_key=553a431e192d2553a431e1930f&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-phones-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-phones-req" data-clipboard-title="csharp Get phones List"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.GetPhones();</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#get-phones-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-phones-resp">[
+    {
+        &quot;phone_number&quot;: &quot;+14096008006&quot;,
+        &quot;number&quot;: &quot;4096008006&quot;,
+        &quot;prefix&quot;: &quot;+1&quot;,
+        &quot;friendly_name&quot;: &quot;(409) 600-8006&quot;,
+        &quot;flag&quot;: &quot;https:\/\/app2.virtualbrix.net\/assets\/flags\/icons\/us.png&quot;,
+        &quot;city&quot;: &quot;Detroit, MI&quot;,
+        &quot;country&quot;: &quot;United States&quot;
+    },    
+    {
+        &quot;phone_number&quot;: &quot;+18103782027&quot;,
+        &quot;number&quot;: &quot;8103782027&quot;,
+        &quot;prefix&quot;: &quot;+1&quot;,
+        &quot;friendly_name&quot;: &quot;(810) 378-2027 (with transcription)&quot;,
+        &quot;flag&quot;: &quot;https:\/\/app2.virtualbrix.net\/assets\/flags\/icons\/us.png&quot;,
+        &quot;country&quot;: &quot;United States&quot;
+    }
+]</code></pre>
+            <p>This endpoint to Get Phones.</p>
+            <h3 id="http-request-28">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_phones/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of  Get Phones-->
+            <!--Start of Get Messages-->
+            <h2 id="get-messages">Get Messages</h2>
+            <blockquote>
+                <p>The Get Messages Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-get-messages-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-get-messages-req">curl -X POST https://app2.virtualbrix.net/rapi/get_messages/ -d\
+&quot;api_key=553a431e192d2553a431e1930f&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-get-messages-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-get-messages-req" data-clipboard-title="Get Messages List"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var response = <span class="cpk">Api</span>.GetMessages();</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#get-messages-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="get-messages-resp">{
+    &quot;status&quot;: &quot;ok&quot;,
+    &quot;msgs&quot;: [
+    {
+        &quot;id&quot;: &quot;1&quot;,
+        &quot;title&quot;: &quot;First Notification&quot;,
+        &quot;body&quot;: &quot;Hello, it is first notification of call recorder app&quot;,
+        &quot;time&quot;: &quot;2018-06-25 00:40:16&quot;
+    },
+    {
+        &quot;id&quot;: &quot;2&quot;,
+        &quot;title&quot;: &quot;Unit Test1&quot;,
+        &quot;body&quot;: &quot;Unit Test1 Body&quot;,
+        &quot;time&quot;: &quot;2019-05-17 13:53:41&quot;
+    },
+    {
+        &quot;id&quot;: &quot;3&quot;,
+        &quot;title&quot;: &quot;Unit Test2&quot;,
+        &quot;body&quot;: &quot;New Call Package available Now&quot;,
+        &quot;time&quot;: &quot;2019-05-21 12:12:09&quot;
+    }
+    ]
+}
+</code></pre>
+            <p>This endpoint to Get Messages.</p>
+            <h3 id="http-request-29">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/get_messages/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of  Get Messages-->
+            <!--Start of Update Device Token-->
+            <h2 id="update-device-token">Update Device Token</h2>
+            <blockquote>
+                <p>The Update Device Token Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-update-device-token-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button></button>
+<code id="tab-shell-update-device-token-req">curl -X POST https://app2.virtualbrix.net/rapi/update_device_token/ -d \
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;device_token=devicetokenvalue
+&amp;device_type=ios&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;">
+<button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-update-device-token-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-update-device-token-req" data-clipboard-title="Update Device Token"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+var deviceType = <span class="cpk">DeviceType</span>.windows; // set your request device
+var deviceToken = <span class="cpk">Guid</span>.NewGuid(); // create or get your device token
+var response = <span class="cpk">Api</span>.UpdateDeviceToken(deviceToken, deviceType);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight" data-clipboard-target="#update-device-token-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button></button>
+<code id="update-device-token-resp">{
+    &quot;status&quot;: &quot;ok&quot;,
+    &quot;msg&quot;: &quot;Successfully Updated&quot;,
+    &quot;code&quot;: &quot;device_token_updated&quot;
+}</code></pre>
+            <p>This endpoint to update Device Token.</p>
+            <h3 id="http-request-30">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/update_device_token/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>device_token</td>
+                        <td>Yes</td>
+                        <td>the device_token</td>
+                    </tr>
+                    <tr>
+                        <td>device_type</td>
+                        <td>Yes</td>
+                        <td>the device_type are ios, android, mac, windows</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Update Device Token-->
+            <!--Start of Buy Credits-->
+            <h2 id="buy-credits">Buy Credits</h2>
+            <blockquote>
+                <p>The Buy Credits Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-buy-credits-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-buy-credits-req">curl -X POST https://app2.virtualbrix.net/rapi/buy_credits/ -d \
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;amount=2
+&amp;product_id=123
+&amp;device_type=android
+&amp;reciept=11&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-buy-credits-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-buy-credits-req" data-clipboard-title="Buy Credits"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+string amount = &quot;2&quot;;
+string reciept &quot;123&quot;;
+string productId = &quot;123&quot;;;
+var deviceType = DeviceType.android;
+var response = <span class="cpk">Api</span>.BuyCredits(amount, reciept, productId, deviceType);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight" data-clipboard-target="#buy-credits-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="buy-credits-resp">{
+    &quot;status&quot;:&quot;error&quot;, //  &quot;status&quot;:&quot;ok&quot; for success response
+    &quot;msg&quot;:&quot;Invalid Reciept&quot;
+}</code></pre>
+            <p>This endpoint to Buy Credits.</p>
+            <h3 id="http-request-31">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/buy_credits/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>amount</td>
+                        <td>Yes</td>
+                        <td>the amount</td>
+                    </tr>
+                    <tr>
+                        <td>reciept</td>
+                        <td>Yes</td>
+                        <td>the reciept</td>
+                    </tr>
+                    <tr>
+                        <td>product_id</td>
+                        <td>Yes</td>
+                        <td>the product_id</td>
+                    </tr>
+                    <tr>
+                        <td>device_type</td>
+                        <td>Yes</td>
+                        <td>the device_type are android/iOS</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Buy Credits-->
+            <!--Start of Notify User-->
+            <h2 id="notify-user">Notify User</h2>
+            <blockquote>
+                <p>The Notify User Request Code Example: </p>
+            </blockquote>
+            <pre class="highlight shell tab-shell"><button class="btn highlight shell tab-shell" data-clipboard-target="#tab-shell-notify-user-custom-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-shell-notify-user-custom-req">curl -X POST https://app2.virtualbrix.net/rapi/notify_user_custom/ -d \
+&quot;api_key=553a431e192d2553a431e1930f
+&amp;title=test
+&amp;body=test body
+&amp;device_type=android&quot;</code></pre>
+            <pre class="highlight csharp tab-csharp" style="display: none;"><button class="btn highlight csharp tab-csharp" data-clipboard-target="#tab-csharp-notify-user-custom-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-csharp-notify-user-custom-req" data-clipboard-title="notify user custom"><span class="cpk">using</span> Recording 
+<span class="cpk">Api</span>.ApiKey = &quot;557872b508520557872b50855c&quot;;
+string title = &quot;Recording Notification&quot;;
+string body &quot;Welcome to the Recording Apps&quot;;
+string productId = &quot;123&quot;;;
+var deviceType = <span class="cpk">DeviceType</span>.android;
+var response = <span class="cpk">Api</span>.NotifyUserCustom(title, body, productId, deviceType);</code></pre>
+            <blockquote>
+                <p>The above command returns JSON structured like this:</p>
+            </blockquote>
+            <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-clipboard-target="#notify-user-custom-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="notify-user-custom-resp">{
+    4   // 4=success
+    // 3=not delivered
+    // 2=error
+}</code></pre>
+            <p>This endpoint to Notify User.</p>
+            <h3 id="http-request-32">curl Request</h3>
+            <p><code>https://app2.virtualbrix.net/rapi/notify_user_custom/</code></p>
+            <h3 id="url-parameters-5">Parameters</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Required</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>api_key</td>
+                        <td>Yes</td>
+                        <td>the api_key you received on phone verification</td>
+                    </tr>
+                    <tr>
+                        <td>title</td>
+                        <td>Yes</td>
+                        <td>the title</td>
+                    </tr>
+                    <tr>
+                        <td>body</td>
+                        <td>Yes</td>
+                        <td>the body of the notification</td>
+                    </tr>
+                    <tr>
+                        <td>device_type</td>
+                        <td>Yes</td>
+                        <td>the device_type are ios, android, mac, windows</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--End of Notify User-->
+            <h1 id="errors">Errors</h1>
+            <aside class="notice">
+                This error section listed.
+            </aside>
+            <p>The Recording API uses the following error codes:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Error Code</th>
+                        <th>Meaning</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>400</td>
+                        <td>Bad Request -- Your request is invalid.</td>
+                    </tr>
+                    <tr>
+                        <td>401</td>
+                        <td>Unauthorized -- Your API key is wrong.</td>
+                    </tr>
+                    <tr>
+                        <td>403</td>
+                        <td>Forbidden -- The file requested is hidden for administrators only.</td>
+                    </tr>
+                    <tr>
+                        <td>404</td>
+                        <td>Not Found -- The specified file could not be found.</td>
+                    </tr>
+                    <tr>
+                        <td>405</td>
+                        <td>Method Not Allowed -- You tried to access a file with an invalid method.</td>
+                    </tr>
+                    <tr>
+                        <td>406</td>
+                        <td>Not Acceptable -- You requested a format that isn't json.</td>
+                    </tr>
+                    <tr>
+                        <td>410</td>
+                        <td>Gone -- The file requested has been removed from our servers.</td>
+                    </tr>
+                    <tr>
+                        <td>418</td>
+                        <td>I'm a teapot.</td>
+                    </tr>
+                    <tr>
+                        <td>429</td>
+                        <td>Too Many Requests -- You're requesting too many files! Slow down!</td>
+                    </tr>
+                    <tr>
+                        <td>500</td>
+                        <td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+                    </tr>
+                    <tr>
+                        <td>503</td>
+                        <td>Service Unavailable -- We're temporarily offline for maintenance. Please try again later.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="dark-box">
+            <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="csharp">csharp</a>
+                <!-- <a href="#" data-language-name="python" class="active">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>-->
+            </div>
+        </div>
+    </div>
+    <script src="javascripts/fncopy.js"></script>
+</body>
+
+</html>
