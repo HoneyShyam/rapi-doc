@@ -38,6 +38,10 @@
     color: #00fff3;
 }
 
+.highlight .jav {
+    color: #5de29f;
+}
+
 .highlight .c1 {
     color: #75715e;
 }
@@ -92,7 +96,7 @@
 }
 
 .highlight .kt {
-    color: #66d9ef;
+    color: #0fbad6;
 }
 
 .highlight .mf {
@@ -166,7 +170,7 @@
 }
 
 .highlight .na {
-    color: #a6e22e;
+    color: #c1e083;
 }
 
 .highlight .nc {
@@ -182,7 +186,23 @@
 }
 
 .highlight .nf {
-    color: #a6e22e;
+    color: #e6db74;
+}
+
+.highlight .o {
+    color: #4c2ff0;
+}
+
+.highlight .op {
+    color: #ce7b40;
+}
+
+.highlight .ph {
+    color: #FFA500;
+}
+
+.highlight .p {
+    color: #fcfcfc;
 }
 
 .highlight .vc {
