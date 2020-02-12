@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -15,7 +15,7 @@
     <script src="dist/clipboard.min.js"></script>
 </head>
 
-<body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;, &quot;go&quot;, &quot;java&quot;, &quot;node&quot;, &quot;php&quot;]">
+<body class="index" data-languages="[&quot;shell&quot;,&quot;csharp&quot;, &quot;go&quot;, &quot;java&quot;, &quot;node&quot;, &quot;php&quot;, &quot;Swift&quot;]">
     <a href="#" id="nav-button">
         <span>
             NAV
@@ -25,12 +25,15 @@
     <div class="toc-wrapper">
         <img src="images/logo-site.png" class="logo" alt="Logo">
         <div class="lang-selector">
-            <a href="#" data-language-name="shell" class="active">Shell</a>
+
+            <a href="#" data-language-name="shell">Shell</a>
             <a href="#" data-language-name="csharp">.NET</a>
             <a href="#" data-language-name="go">Go</a>
             <a href="#" data-language-name="java">Java</a>
             <a href="#" data-language-name="node">Node</a>
             <a href="#" data-language-name="php">PHP</a>
+            <a href="#" data-language-name="swift" class="active">Swift</a>
+
         </div>
         <div class="search">
             <input type="text" class="search" id="input-search" placeholder="Search">
@@ -128,9 +131,11 @@
         <div class="content">
             <h1 id="introduction">Introduction</h1>
             <p>Welcome to the Recording API! You can use our API to access Recording API endpoints, which can get information on various Recording files, and folders in our database for your account.</p>
-            <p>We have language bindings in Shell, C#, GO, Java, PHP and many more! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+            <p>We have language bindings in Shell, .NET, GO, Java, PHP, Swift and many more! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
             <h1 id="implementation">Implementation</h1>
             <p>You need to use the api lib to implement code</p>
+            <p class="highlight swift tab-swift" style="display: none;">To set up a shared app group open the Capabilities tab of your project in Xcode. Enable the App Groups capability. This adds an entitlement file (if needed) to the selected target and adds the com.apple.security.application-groups entitlement
+                to that file.e information, see Configuring App Groups in App Distribution Guide. Import RecorderFramework in AppDelegate.</p>
             <blockquote>
                 <p>To implement, use this code:</p>
             </blockquote>
@@ -172,7 +177,11 @@ import (
         &quot;novokrest/php-call-recorder-api&quot;: &quot;*@dev&quot;
     }
 }</code></pre>
-
+            <pre class="highlight swift tab-swift" style="display: none;">
+<code>RecorderFramework is available through <a href="http://cocoapods.org/" target="_blank" title="CocoaPods">CocoaPods</a>. To install it, simply add the following line to your Podfile:
+pod &quot;RecorderFramework&quot;
+Add the following code to &quot;didFinishLaunchingWithOptions&quot; method in AppDelegate.
+RecorderFrameworkManager.sharedInstance.containerName = &quot;group.com.codebluestudio.Recorder&quot;</code></pre>
             <h1 id="authentication">Authentication</h1>
             <pre class="highlight java tab-java" style="display: none;">
 <code><span class="jav">CallRecorderApi</span> apiClient = 
@@ -197,6 +206,8 @@ config := Configuration{
     api := CallRecorderApi{
         Config: config,
     }</code></pre>
+
+            <pre class="highlight swift tab-swift" style="display: none;"><code><span class="sw">import</span> RecorderFramework</code></pre>
             <blockquote>
                 <p>Make sure to replace <code>553a431e192d2553a431e1930f</code> with your API key.</p>
             </blockquote>
@@ -214,7 +225,7 @@ config := Configuration{
             <blockquote>
                 <p>The Register Request Code Example:</p>
             </blockquote>
-            <pre class="highlight shell tab-shell"><button class="btn highlight" data-clipboard-target="#tab-shell-register-req"><img class="clippy"  src="images/clippy.svg" alt="Copy"></button>
+            <pre class="highlight shell tab-shell" style="display: none;"><button class="btn highlight" data-clipboard-target="#tab-shell-register-req"><img class="clippy"  src="images/clippy.svg" alt="Copy"></button>
 <code id="tab-shell-register-req">curl -X POST https://app2.virtualbrix.net/rapi/register_phone/ -d \
 &quot;phone=+16463742122&amp;
 token=55942ee3894f51000530894&quot;</code></pre>
@@ -260,8 +271,23 @@ $response = $api-><span class="op">registerPhone</span>(
         ->setToken(&apos;55942ee3894f51000530894&apos;)
         ->setPhone(&apos;+16463742122&apos;)
 );</code></pre>
+            <pre class="highlight swift tab-swift" style="display: none;"><button class="btn highlight swift tab-swift" data-clipboard-target="#tab-swift-register-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-swift-register-req"><span class="gt">import</span> <span class="mx">RecorderFramework</span> 
+RecorderFrameworkManager.sharedInstance.<span class="kc">register</span>(&quot;+16463742122&quot;, <span class="kc">completionHandler</span>: { (success, data) -&gt; Void in
+    if success {
+        RecorderFrameworkManager.sharedInstance.<span class="kc">sendVerificationCode</span>(data as! String, <span class="kc">completionHandler</span>: { (success, data) -> Void in
+            if success {
+                if ((data as! [String:Any])[&quot;phone&quot;] as! String) == &quot;+16463742122&quot;{
+                   // sucess response
+                }else{
+                    //Error response &quot;Error: \(data)&quot;
+                }
+    }else {
+        //display error
+    }
+})</code></pre>
             <blockquote>
-                <p>The above command returns JSON structured like this:</p>
+                <p>After a successfull registration a SMS,containing the registration code, will be sent to the registered phone number. Send registration code to the server. The above command returns JSON structured like this:</p>
             </blockquote>
             <pre class="highlight json tab-json"><button class="btn highlight json tab-json" data-before-copy="Copy" data-after-copy="Copied" data-clipboard-target="#register-resp"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
 <code id="register-resp">{
@@ -392,6 +418,22 @@ return $api-><span class="ph">verifyPhone</span>((new <span class="o">VerifyPhon
     );
 });</code></pre>
 
+            <pre class="highlight swift tab-swift" style="display: none;"><button class="btn highlight swift tab-swift" data-clipboard-target="#tab-swift-verify-phone-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-swift-verify-phone-req"><span class="gt">import</span> <span class="mx">RecorderFramework</span> 
+RecorderFrameworkManager.sharedInstance.<span class="kc">sendVerificationCode</span>(&quot;12345&quot;, <span class="kc">completionHandler</span>: { (success, data) -&gt; Void in
+if success {
+    //Call main Sync to retrieve all the required data from the server
+    RecorderFrameworkManager.sharedInstance.<span class="kc">mainSync</span> { (success) -&gt; Void in
+    if success {
+
+    }else{
+        //display error
+    }
+    }
+    }else{
+        //display error
+    }
+})</code></pre>
             <blockquote>
                 <p>The above command returns JSON structured like this:</p>
             </blockquote>
@@ -548,6 +590,17 @@ $response = $this-><span class="ph">provideApiKey</span>($api, function ($api, $
         ->setOp(&apos;greater&apos;)
     );
 });</code></pre>
+
+            <pre class="highlight swift tab-swift"><button class="btn highlight swift tab-swift" data-clipboard-target="#tab-swift-get-all-files-req"><img class="clippy" src="images/clippy.svg" alt="Copy"></button>
+<code id="tab-swift-get-all-files-req"><span class="gt">import</span> <span class="mx">RecorderFramework</span> 
+RecorderFrameworkManager.sharedInstance.<span class="kc">getRecordings</span> (folderId, <span class="kc">completionHandler</span>: ({ (success, data) -> Void in
+if success {
+    //handle success response
+}else{
+    //display error
+}         
+}))</code></pre>
+
             <blockquote>
                 <p>The above command returns JSON structured like this:</p>
             </blockquote>
@@ -1961,6 +2014,16 @@ $getFoldersResponse = $api-> <span class="ph">getFolders</span> (
     (new <span class="op">GetFoldersRequest</span>())
     ->setApiKey(&apos;59affde26a75f59affde26a7a3&apos;)
 );</code></pre>
+            <pre class="highlight swift tab-swift" style="display: none;"><button class="btn highlight swift tab-swift" data-clipboard-target=" #tab-swift-get-folders-req"><img class="clippy" src=" images/clippy.svg" alt=" Copy"></button>
+<code id="tab-swift-get-folders-req"><span class="gt">import</span> <span class="mx">RecorderFramework</span> 
+RecorderFrameworkManager.sharedInstance.<span class="kc">getFolders</span>({ (success, data) -> Void in
+if success {
+        //handle success response
+}else{
+    //display error
+}
+})</code></pre>
+
 
             <blockquote>
                 <p>The above command returns JSON structured like this:</p>
@@ -3683,12 +3746,13 @@ $notifyUserResponse = $api-> <span class="ph">notifyUserCustom</span>(
         </div>
         <div class="dark-box">
             <div class="lang-selector">
-                <a href="#" data-language-name="shell" class="active">Shell</a>
+                <a href="#" data-language-name="shell">Shell</a>
                 <a href="#" data-language-name="csharp">.NET</a>
                 <a href="#" data-language-name="go">Go</a>
                 <a href="#" data-language-name="java">Java</a>
                 <a href="#" data-language-name="node">Node</a>
                 <a href="#" data-language-name="php">PHP</a>
+                <a href="#" data-language-name="swift" class="active">Swift</a>
             </div>
         </div>
     </div>
